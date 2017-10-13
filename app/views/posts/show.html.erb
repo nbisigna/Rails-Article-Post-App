@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h2 style='word-wrap: break-word;'>
+  <!--<strong>Title:</strong>-->
+  <%= @post.title %>
+</h2>
+
+<p><%= image_tag(@post.image(:medium)) %></p>
+
+<p>
+  <!--<strong>Body:</strong>-->
+  <%= @post.body %>
+</p>
+
+
+
+<% if current_user %>
+<% if @post.user_id == current_user.id %>
+<%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: 'Are you sure you want to delete your post?'} %> |
+<%end%>
+<% end %>
+<%= link_to 'Back', posts_path %>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>

@@ -1,0 +1,59 @@
+<%= form_for post, html: {multipart: true} do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title,'Headline' %>
+    <%= form.text_area :title, id: :post_title, rows: 2, cols: 60, maxlength: 108 %>
+  </div>
+
+  <div class="field">
+      
+  <%= form.file_field :image, :type => "file", :id => "pictureInput" %>
+      
+      <div id="upload-button">
+          Add Picture
+      </div>
+  </div>
+
+<div style="margin: auto; max-width: 300px; height:auto; width:auto;" id="target"></div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :post_body, rows: 4, cols: 60, maxlength: 2500 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit("Submit Column", class: "button") %>
+  </div>
+<% end %>
+
+<script>
+    $(function() {
+  $('#pictureInput').on('change', function(event) {
+    var files = event.target.files;
+    var image = files[0]
+    console.log(image.size);
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      console.log(file);
+      img.style.width = '300px';
+      img.style.height = 'auto';
+      img.src = file.target.result;
+      $('#target').html(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});
+</script>

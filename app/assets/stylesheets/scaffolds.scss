@@ -1,0 +1,194 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 0px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; 
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+
+  /*&:visited {
+    color: #666;
+  }*/
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+table {
+    margin: auto;
+    
+}
+
+tbody {
+    display: inline-block;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: none;
+        opacity: .5;
+    }
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+.clickable {
+    text-decoration: none;
+}
+
+#upload-button {
+    border-radius: 10px;
+    display: inline-block;
+    background-color: black;
+    color: white;
+    z-index: 1;
+    opacity: 1;
+    bottom:1px;
+    cursor: pointer;
+    position: relative;
+    padding: 0px 5px;
+    width: 224px;
+    margin: auto;
+    content: "Add Picture";
+    border: 1px solid #888;
+    transition: .3s background-color;
+        &:hover {
+            color: black;
+            background-color: white;
+            }
+}
+
+#pictureInput {
+    background-color: black;
+    z-index: 2;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    float: center;
+}
+
+.button {
+    background-color: black;
+    color: white;
+}
+
+
+
+#post-title {
+    font-weight: bold;
+    word-wrap: break-word;
+    overflow:hidden;
+    position:relative;
+    max-height: 4.2em;
+    text-align:justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+        background: white;
+    }
+}
+
+td {
+  
+  max-width: 120px;
+  max-height: 360px;    
+}
+
+#post-body {
+        
+    overflow:hidden;
+    position:relative;
+    max-height: 19.5em;
+    text-align:justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+        background: white;
+    }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px -7px 0;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+label {
+  display: block;
+}
