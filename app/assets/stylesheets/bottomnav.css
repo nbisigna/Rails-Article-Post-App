@@ -37,11 +37,11 @@
   background-color: #005f5f;
 }
 
-/*.bnav a.active {
+.bnav a:active {
   background-color: #aaa;
   color: #444;
   cursor: default;
-}*/
+}
 
 @media screen and (min-width: 375px) {
   .bnav li {

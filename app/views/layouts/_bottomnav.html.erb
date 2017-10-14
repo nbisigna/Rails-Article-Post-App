@@ -2,13 +2,13 @@
 <div class="bnav">
       <ul>
           <% if current_user %>
-        <li class="Resume"><a href="#">Resume</a>
+        <li><a><%= link_to 'Resume', edit_user_registration_path %></a>
           </li>
-        <li class="Columns"><a href="#">Columns</a>
+        <li><a>Columns</a>
           </li>
         <li><a><%= link_to 'Publish', new_post_path %></a>
           </li>
-        <li class="Opinions"><a href="#">Opinions</a>
+        <li><a>Opinions</a>
           </li>
         <li><a ><%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>
           </li>
@@ -21,3 +21,12 @@
       </ul>
     </div>
 </div>
+
+<script>
+     $(function() {
+        $('a').click(function() {
+           $('a').removeClass();
+           $(this).addClass('active');
+        });
+     });
+  </script>

@@ -1,0 +1,8 @@
+<br>
+	<div><%= comment.user.username unless comment.user.blank? %></div>
+<div>		
+  <%= comment.body %>
+		</div>
+    <small><%= comment.created_at.try(:strftime,"%b %d %Y at %H:%M")
+%></small>
+<br>

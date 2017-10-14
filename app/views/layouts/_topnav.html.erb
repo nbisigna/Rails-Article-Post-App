@@ -2,7 +2,7 @@
 <div class="nav">
       <ul>
           
-          <li class="New"><a href="#"><%= link_to 'New', posts_path %></a>
+          <li><a><%= link_to 'New', posts_path, class: :link %></a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -12,7 +12,7 @@
           </ul>
         </li>
         
-        <li class="Top"><a href="#">Top</a>
+        <li><a href="#">Top</a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -22,7 +22,7 @@
           </ul>
         </li>
           
-          <li class="Loved"><a href="#">Loved</a>
+          <li><a href="#">Loved</a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -32,7 +32,7 @@
           </ul>
         </li>
           
-          <li class="Hated"><a href="#">Hated</a>
+          <li><a href="#">Hated</a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -42,7 +42,7 @@
           </ul>
         </li>
           
-          <li class="Users"><a href="#">Ranked</a>
+          <li><a href="#">Ranked</a>
           <ul>
             <li><a href="#">Top</a></li>
             <li><a href="#">Loved</a></li>
@@ -53,3 +53,11 @@
       </ul>
     </div>
 </div>
+
+<script>
+     $(function() {
+        $('#nav li a ').click(function() {
+           $(this).addClass("active");
+        });
+     });
+  </script>

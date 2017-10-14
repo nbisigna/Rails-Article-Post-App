@@ -1,0 +1,29 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#comments-section {
+    display: none;
+    margin: auto;
+    text-align: center;
+}
+.comments-link{
+    
+    
+    &:hover {
+        color: #fff;
+        background-color: #000;
+        
+    }
+}
+
+#link-container {
+    width: 375px;
+    margin: auto;
+    cursor: pointer;
+}
+
+#comments-form {
+    margin: auto;
+    
+}
+

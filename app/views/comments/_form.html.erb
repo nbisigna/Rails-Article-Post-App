@@ -1,0 +1,13 @@
+
+<%= form_for [@post, @post.comments.build], remote: true do |form| %>
+  
+
+  <div class="field">
+    <%= form.label :body, 'Opinion' %>
+    <%= form.text_area :body, id: :comment_body, rows: 4, cols: 60, placeholder: 'Share your opinion...' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

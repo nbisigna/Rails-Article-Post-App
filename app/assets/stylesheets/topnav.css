@@ -33,11 +33,11 @@ top {
   background-color: #005f5f;
 }
 
-/*.nav a.active {
+.nav a.active {
   background-color: #aaa;
   color: #444;
-  cursor: default;
-}*/
+  cursor: pointer;
+}
 
 /* Sub Menus */
 .nav li li {

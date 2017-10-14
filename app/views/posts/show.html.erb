@@ -4,13 +4,17 @@
   <!--<strong>Title:</strong>-->
   <%= @post.title %>
 </h2>
-
+<% if @post.image.exists? %>
 <p><%= image_tag(@post.image(:medium)) %></p>
-
-<p>
+<% end %>
+<p id="show-body">
   <!--<strong>Body:</strong>-->
   <%= @post.body %>
 </p>
+
+
+ <%= hidden_field_tag x = @post.comments.count %>
+<div id="link-container"><h3 class="comments-link"><span id='count'><%= x %></span> Opinion<% if x  ===0 || x > 1%>s<%end%></h3></div>
 
 
 
@@ -20,13 +24,23 @@
 <%end%>
 <% end %>
 <%= link_to 'Back', posts_path %>
+<br>
+<br>
+<% if current_user %>
+<div id="comments-form">
+  <%= render 'comments/form' %>
+</div>
+<%end%>
 
 
-
-
-
-
-
+	<section id="comments-section">
+  <div id="comments">
+    <%= render(partial: 'comments/comment', collection: @post.comments) %>
+  </div>
+    <%if x > 0 %>
+    <div id="link-container"><h3 class="comments-link">Hide Opinions</h3></div>
+    <% end %>
+</section>
 
 
 
