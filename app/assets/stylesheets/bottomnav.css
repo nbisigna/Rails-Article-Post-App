@@ -1,5 +1,4 @@
 .bnav {
-    
   margin: 0;
   padding: 0;
   background: #ccc;
@@ -41,6 +40,11 @@
   background-color: #aaa;
   color: #444;
   cursor: default;
+}
+
+.avatar-thumb {
+	border-radius: 100%;
+	
 }
 
 @media screen and (min-width: 375px) {

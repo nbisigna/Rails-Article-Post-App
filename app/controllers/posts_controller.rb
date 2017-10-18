@@ -1,10 +1,22 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :dislike]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.paginate(page: params[:page], per_page: 33).order('created_at DESC')
+  end
+	
+  def top
+	@posts = Post.all.paginate(page: params[:page], per_page: 33).order(:cached_weighted_total => :desc)
+  end
+	
+  def loved
+	@posts = Post.all.paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :desc)
+  end
+	
+  def hated
+	@posts = Post.all.paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :asc)
   end
 
   # GET /posts/1
@@ -61,6 +73,22 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+  def like
+  @post.liked_by current_user
+  respond_to do |format|
+    format.html { redirect_to :back }
+    format.js
+    end
+ end
+
+  def dislike
+  @post.disliked_by current_user
+  respond_to do |format|
+    format.html { redirect_to :back }
+    format.js
+    end
+ end
 
   private
     # Use callbacks to share common setup or constraints between actions.

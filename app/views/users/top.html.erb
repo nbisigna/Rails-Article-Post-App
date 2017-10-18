@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+
+<%= link_to user_profile_path(user), {style: 'text-decoration:none'}  do %>
+
+<div><%= user.username %></div>
+<div><%= image_tag(user.avatar(:thumb), class: 'show-avatar') %></div>
+<% end %>
+<%end%>

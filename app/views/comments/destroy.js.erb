@@ -1,0 +1,8 @@
+
+var comment = $('div#comment-<%= @comment.id %>');
+comment.fadeOut(function () {
+  $(this).remove();
+});
+var count = $("#count").text();
+var newCount = count - 1;
+$('#count').text(newCount);

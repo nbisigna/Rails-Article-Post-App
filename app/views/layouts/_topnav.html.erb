@@ -12,7 +12,7 @@
           </ul>
         </li>
         
-        <li><a href="#">Top</a>
+        <li><a><%= link_to 'Top', top_path, class: :link %></a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -22,7 +22,7 @@
           </ul>
         </li>
           
-          <li><a href="#">Loved</a>
+          <li><a><%= link_to 'Loved', loved_path, class: :link %></a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -32,7 +32,7 @@
           </ul>
         </li>
           
-          <li><a href="#">Hated</a>
+          <li><a><%= link_to 'Hated', hated_path, class: :link %></a>
           <ul>
             <li><a href="#">Today</a></li>
             <li><a href="#">Last Week</a></li>
@@ -42,7 +42,7 @@
           </ul>
         </li>
           
-          <li><a href="#">Ranked</a>
+          <li><a><%= link_to 'Ranked', top_users_path, class: :link %></a>
           <ul>
             <li><a href="#">Top</a></li>
             <li><a href="#">Loved</a></li>

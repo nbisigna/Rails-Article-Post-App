@@ -1,8 +1,22 @@
-<br>
-	<div><%= comment.user.username unless comment.user.blank? %></div>
+
+<div id='comment-<%= comment.id %>'>
+	<br>
+	<div><%= image_tag(comment.user.avatar(:tiny), class: 'show-avatar') unless comment.user.blank? %><%= comment.user.username unless comment.user.blank? %></div>
 <div>		
+	
   <%= comment.body %>
 		</div>
     <small><%= comment.created_at.try(:strftime,"%b %d %Y at %H:%M")
 %></small>
-<br>
+	<div>
+<% if current_user %>
+<%#= link_to 'Reply', new_post_comment_path(:parent_id=>comment, :post_id => @post) %>
+<% if comment.user_id == current_user.id %>
+<%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+		
+		
+<%end%>
+		<%end%>
+		</div>
+	<br>
+</div>

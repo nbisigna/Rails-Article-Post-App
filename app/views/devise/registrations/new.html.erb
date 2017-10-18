@@ -3,6 +3,14 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+<div style="margin: auto; max-width: 300px; height:auto; width:auto;" id="target"></div>
+
+<div class="field">
+	<%= f.label 'picture' %>
+  <%= f.file_field :avatar, :type => "file", :id => "picture"  %>
+</div>
+
+
   <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true %>
@@ -32,3 +40,24 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script>
+    $(function() {
+  $('#picture').on('change', function(event) {
+    var files = event.target.files;
+    var image = files[0]
+    console.log(image.size);
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      console.log(file);
+      img.style.width = '300px';
+      img.style.height = 'auto';
+      img.src = file.target.result;
+      $('#target').html(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});
+</script>

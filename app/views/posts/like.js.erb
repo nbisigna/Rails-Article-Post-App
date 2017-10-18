@@ -1,0 +1,14 @@
+
+
+
+$('#like').removeClass('liked');
+$('#like').addClass('liked');
+$('#like').removeClass('disliked');
+$('#dislike').addClass('disliked');
+$('#dislike').removeClass('liked');
+/*var likes = $('#likes').text();
+var newLikes = +likes + 1;*/
+$('#likes').html('<%= @post.get_likes.size %>' );
+/*var dislikes = $('#dislikes').text();
+	var newDislikes = +dislikes - 1;*/
+	$('#dislikes').html('<%= @post.get_dislikes.size%>');

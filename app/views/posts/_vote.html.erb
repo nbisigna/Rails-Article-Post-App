@@ -1,0 +1,33 @@
+<% if current_user %>
+<%= hidden_field_tag y = @post.get_likes.size %>
+<span id='likes'>
+<%=y%>
+</span>
+
+<span class='parent'>
+<% if current_user.voted_up_on? @post %>
+	<%= link_to '√', like_post_path(@post), remote: true, id: 'like', class: 'liked'%>
+	|
+<%= link_to 'X', dislike_post_path(@post), remote: true, id: 'dislike', class: 'disliked' %>
+
+
+
+<%elsif current_user.voted_down_on? @post %>
+<%= link_to '√', like_post_path(@post), remote: true, id: 'like', class: 'disliked'%>
+|
+<%= link_to 'X', dislike_post_path(@post), remote: true, id: 'dislike', class: 'liked' %>
+
+
+
+<%else%>
+<%= link_to '√', like_post_path(@post), remote: true, id: 'like'%>
+ | 
+<%= link_to 'X', dislike_post_path(@post), remote: true, id: 'dislike' %>
+<%end%>
+</span>
+
+<%= hidden_field_tag z = @post.get_dislikes.size %>
+<span id='dislikes'>
+<%=z%>
+</span>
+<%end%>

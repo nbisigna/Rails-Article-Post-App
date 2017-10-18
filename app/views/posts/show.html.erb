@@ -1,9 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<%= hidden_field_tag @post.user.id %>
+<%= link_to user_profile_path(@post.user.id), {style: 'text-decoration:none'}  do %>
+<div><%= @post.user.username %></div>
+<div><%= image_tag(@post.user.avatar(:tiny), class: 'show-avatar') %>
+</div>
+<%end%>
+
 <h2 style='word-wrap: break-word;'>
   <!--<strong>Title:</strong>-->
   <%= @post.title %>
 </h2>
+
+
+
+
 <% if @post.image.exists? %>
 <p><%= image_tag(@post.image(:medium)) %></p>
 <% end %>
@@ -11,6 +22,10 @@
   <!--<strong>Body:</strong>-->
   <%= @post.body %>
 </p>
+<br>
+
+
+<%= render 'vote' %>
 
 
  <%= hidden_field_tag x = @post.comments.count %>
@@ -44,7 +59,6 @@
 
 
 
-<br>
-<br>
+
 <br>
 <br>

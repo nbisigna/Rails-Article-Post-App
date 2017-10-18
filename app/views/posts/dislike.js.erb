@@ -1,0 +1,10 @@
+
+
+$('#like').addClass('disliked');
+$('#like').removeClass('liked');
+$('#dislike').removeClass('disliked');
+$('#dislike').removeClass('liked');
+$('#dislike').addClass('liked');
+
+$('#likes').html('<%= @post.get_likes.size %>' );
+$('#dislikes').html('<%= @post.get_dislikes.size%>');

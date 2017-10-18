@@ -1,7 +1,24 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<h2><%= resource_name.to_s.humanize %> Resume</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+
+<div style="border-radius: 100%; margin: auto; max-width: 300px; height:auto; width:auto;" id="picTarget">
+	<% if @user.avatar.exists? %>
+	<%= image_tag(@user.avatar, class: 'show-avatar') %>
+	<%end%>
+</div>
+
+<div class="field">
+	<%= f.label 'picture' %>
+	
+  <%= f.file_field :avatar, :type => "file", :id => "picture"  %>
+</div>
+
+<section class="stats">
+        <%= render 'devise/shared/stats' %>
+      </section>
 
   <div class="field">
     <%= f.label :username %><br />
@@ -46,3 +63,24 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<script>
+    $(function() {
+  $('#picture').on('change', function(event) {
+    var files = event.target.files;
+    var image = files[0]
+    console.log(image.size);
+    var reader = new FileReader();
+    reader.onload = function(file) {
+      var img = new Image();
+      console.log(file);
+      img.style.width = '300px';
+      img.style.height = 'auto';
+      img.src = file.target.result;
+      $('#picTarget').html(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
+});
+</script>

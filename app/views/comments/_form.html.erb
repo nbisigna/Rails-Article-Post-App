@@ -1,6 +1,6 @@
 
-<%= form_for [@post, @post.comments.build], remote: true do |form| %>
-  
+<%= form_for [@post, @comment || @post.comments.build], remote: true do |form| %>
+  <%= form.hidden_field :parent_id %>
 
   <div class="field">
     <%= form.label :body, 'Opinion' %>

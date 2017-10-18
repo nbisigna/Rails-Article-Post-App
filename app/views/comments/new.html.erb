@@ -1,5 +1,23 @@
 <h1>New Comment</h1>
 
-<%= render 'form', comment: @comment %>
+<%= render @comment.parent if @comment.parent %>
 
-<%= link_to 'Back', comments_path %>
+<%= hidden_field_tag x = @comment.parent.children.count %>
+<div id="link-container"><h3 class="comments-link"><span id='count'><%= x %></span> Opinion<% if x  ===0 || x > 1%>s<%end%></h3></div>
+
+<%= render 'commentform', comment: @comment %>
+
+
+
+
+<section id="comments-section">
+  <div id="comments">
+	  
+    <%= render(partial: 'comments/comment', collection: @comments) %>
+  </div>
+    <%if x > 0 %>
+    <div id="link-container"><h3 class="comments-link">Hide Opinions</h3></div>
+    <% end %>
+</section>
+
+<%= link_to 'Back', @post %>

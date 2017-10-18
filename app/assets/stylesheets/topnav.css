@@ -1,8 +1,13 @@
-top {
+
+.top {
+  width: 100%;
   margin: 0;
   padding: 0;
   background: #ccc;
-  
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 100;
 }
 
 .nav ul {

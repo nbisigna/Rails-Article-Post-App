@@ -1,0 +1,13 @@
+
+<%= form_for [@post, @comment], remote: true do |form| %>
+  <%= form.hidden_field :parent_id %>
+
+  <div class="field">
+    <%= form.label :body, 'Opinion' %>
+    <%= form.text_area :body, id: :comment_body, rows: 4, cols: 60, placeholder: 'Share your opinion...' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

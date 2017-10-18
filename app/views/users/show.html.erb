@@ -1,0 +1,14 @@
+<% if current_user.username == @user.username %> <div><%= link_to 'Edit Resume', edit_user_registration_path%></div> <%end%>
+<div>
+<%= @user.username %>
+	</div>
+<div>
+<%= image_tag(@user.avatar, class: 'show-avatar') %>
+	</div>
+<br>
+<section class="stats">
+        <%= render 'devise/shared/stats' %>
+      </section>
+<div><%= render 'devise/shared/follow_form' %></div>
+<br>
+<%= link_to 'Back', :back %>
