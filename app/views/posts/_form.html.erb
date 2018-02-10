@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title,'Headline' %>
+    <%= form.label :title,'Headline' %><br>
     <%= form.text_area :title, id: :post_title, rows: 2, cols: 60, maxlength: 108 %>
   </div>
 
@@ -25,35 +25,68 @@
       </div>
   </div>
 
-<div style="margin: auto; max-width: 300px; height:auto; width:auto;" id="target"></div>
+  <div style="margin: auto; max-width: 300px; height:auto; width:auto;" id="target"></div>
+  <div id=picalert></div>
 
   <div class="field">
-    <%= form.label :body %>
+  <%= form.file_field :video, :type => "file", :id => "videoInput" %>
+      
+      <div id="upload-button">
+          Add Video
+      </div>
+  </div>
+  <video class="center" id="vidtarget" height="0px">
+  </video>
+    <div id=vidalert></div>
+
+
+  <div class="field">
+    <%= form.label :body %><br>
     <%= form.text_area :body, id: :post_body, rows: 4, cols: 60, maxlength: 2500 %>
   </div>
-
+  <br>
   <div class="actions">
     <%= form.submit("Submit Column", class: "button") %>
   </div>
 <% end %>
+<br>
 
 <script>
     $(function() {
   $('#pictureInput').on('change', function(event) {
     var files = event.target.files;
-    var image = files[0]
-    console.log(image.size);
+    var image = files[0];
+    var itype = image['type'];
+  if(itype.split('/')[0] != 'image') {
+    $('#picalert').html("Please select a picture.");
+    $('#target').empty();
+    return
+  }
+
+
     var reader = new FileReader();
     reader.onload = function(file) {
       var img = new Image();
-      console.log(file);
       img.style.width = '300px';
       img.style.height = 'auto';
       img.src = file.target.result;
       $('#target').html(img);
     }
     reader.readAsDataURL(image);
-    console.log(files);
   });
+});
+
+$ ("#videoInput").change(function (e) {
+  var type = this.files[0].type
+  var $window = $(window);
+  var width = "300px"
+  var fileInput = document.getElementById('videoInput');
+  var fileUrl = window.URL.createObjectURL(fileInput.files[0]);
+  if(type.split('/')[0] != 'video') {
+    $('#vidalert').html("Please select a video.");
+    $('#vidtarget').attr("src","").attr("controls",false).attr("height","0");
+    return
+  }
+   $("#vidtarget").attr("src", fileUrl).attr("height",width ).attr("controls",true).attr("onclick","this.paused ? this.play() : this.pause();")
 });
 </script>

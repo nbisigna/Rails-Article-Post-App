@@ -6,9 +6,6 @@ $(document).on "turbolinks:load", ->
     event.preventDefault()
     $('#comments-section').fadeToggle()
     $('#comment_body').focus()
-	$('html, body').animate({
-		scrollTop: $('#comments-form').offset().top
-		}, 'fast')
 		
 	
 	

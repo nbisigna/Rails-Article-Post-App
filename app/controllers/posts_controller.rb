@@ -11,14 +11,67 @@ class PostsController < ApplicationController
 	@posts = Post.all.paginate(page: params[:page], per_page: 33).order(:cached_weighted_total => :desc)
   end
 	
+  def topday
+  @posts = Post.created_between(1.day.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_total => :desc)
+  end
+
+  def topweek
+  @posts = Post.created_between(1.week.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_total => :desc)
+  end
+
+  def topmonth
+  @posts = Post.created_between(1.month.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_total => :desc)
+  end
+
+  def topyear
+  @posts = Post.created_between(1.year.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_total => :desc)
+  end
+
   def loved
 	@posts = Post.all.paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :desc)
+  end
+
+  def lovedday
+  @posts = Post.created_between(1.day.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :desc)
+  end
+
+  def lovedweek
+  @posts = Post.created_between(1.week.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :desc)
+  end
+
+  def lovedmonth
+  @posts = Post.created_between(1.month.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :desc)
+  end
+
+  def lovedyear
+  @posts = Post.created_between(1.year.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :desc)
   end
 	
   def hated
 	@posts = Post.all.paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :asc)
   end
 
+  def hatedday
+  @posts = Post.created_between(1.day.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :asc)
+  end
+
+  def hatedweek
+  @posts = Post.created_between(1.week.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :asc)
+  end
+
+  def hatedmonth
+  @posts = Post.created_between(1.month.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :asc)
+  end
+
+  def hatedyear
+  @posts = Post.created_between(1.year.ago, Time.now).paginate(page: params[:page], per_page: 33).order(:cached_weighted_score => :asc)
+  end
+	
+  def portfolio
+	@posts = current_user.posts.paginate(page: params[:page], :per_page => 33).order('created_at DESC')
+  end
+	
+  
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -98,6 +151,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :image)
+      params.require(:post).permit(:title, :body, :image, :video)
     end
 end

@@ -1,8 +1,16 @@
-<%= @users.each do |user| %>
-
+<table>
+<% @users.each do |user| %>
+<tbody>
+	<tr>
+		<td><div class='user-cell'>
 <%= link_to user_profile_path(user), {style: 'text-decoration:none'}  do %>
 
 <div><%= user.username %></div>
 <div><%= image_tag(user.avatar(:thumb), class: 'show-avatar') %></div>
+			</div></td>
 <% end %>
+		<tr>
 <%end%>
+	  
+	</tbody>
+</table>

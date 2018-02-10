@@ -15,14 +15,12 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  database: poll
-  username: postgres
-  password: Leviathan6
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    adapter: postgresql
+    database: poll
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: <%= ENV['DATABASE_USERNAME'] %> 
+    password: <%= ENV['DATABASE_PASSWORD'] %>
+    timeout: 5000
 
 development:
   <<: *default
@@ -83,6 +81,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: poll
-  username: poll
-  password: <%= ENV['POLL_DATABASE_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DATABASE_USERNAME'] %> 
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  timeout: 5000

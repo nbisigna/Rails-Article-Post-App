@@ -1,22 +1,83 @@
 
+<% @post.comments.each do |comment| %>
+
 <div id='comment-<%= comment.id %>'>
-	<br>
-	<div><%= image_tag(comment.user.avatar(:tiny), class: 'show-avatar') unless comment.user.blank? %><%= comment.user.username unless comment.user.blank? %></div>
-<div>		
+
+	<%= comment.body %>
+
+		<br><br>
 	
-  <%= comment.body %>
-		</div>
-    <small><%= comment.created_at.try(:strftime,"%b %d %Y at %H:%M")
+<% if comment.id.present? %>
+<%= hidden_field_tag y = comment.get_likes.size %>
+<span>
+<%=y%>
+</span>
+
+
+<% if (current_user) && (comment.user_id != current_user.id) && (current_user.voted_up_on? comment) %>
+	<%= link_to '√', like_comment_path(id: comment.id, comment_id: comment.id, post_id: @post), remote: true, id: "commentlike", class: 'commentliked'%>
+	|
+<%= link_to 'X', dislike_comment_path(id: comment.id, comment_id: comment.id, post_id:  @post), remote: true, id: "commentdislike", class: 'commentdisliked'%>
+
+
+
+<%elsif (current_user) && (comment.user_id != current_user.id) && (current_user.voted_down_on? comment) %>
+<%= link_to '√', like_comment_path(id: comment.id, comment_id: comment.id, post_id:  @post), remote: true, id: "commentlike", class: 'commentdisliked'%>
+|
+<%= link_to 'X', dislike_comment_path(id: comment.id, comment_id: comment.id, post_id:  @post), remote: true, id: "commentdislike", class: 'commentliked'%>
+
+<%elsif (current_user) && (comment.user_id == current_user.id)%>
+ <span id='like'>√</span> | <span id='dislike'>X</span>
+
+<%else%>
+<%= link_to '√', like_comment_path(id: comment.id, comment_id: comment.id,post_id:  @post), remote: true, id: "commentlike", class: 'commentlike'%>
+ | 
+<%= link_to 'X', dislike_comment_path(id: comment.id, comment_id: comment.id,post_id:  @post), remote: true, id: "commentdislike", class: 'commentdislike' %>
+<%end%>
+	
+
+
+<%= hidden_field_tag z = comment.get_dislikes.size %>
+<span>
+<%=z%>
+</span>
+<%end%>
+
+	
+<br>
+
+
+	
+  
+    <small><%= comment.created_at.try(:strftime,"%b %d %Y at %I:%M%p")
 %></small>
+
 	<div>
-<% if current_user %>
+	<% if comment.user.present? %>
+	<%= link_to user_profile_path(comment.user.id), {style: 'text-decoration:none'}  do %>
+	<%= comment.user.username %>
+	
+	<br>
+	<%= image_tag(comment.user.avatar(:tiny), class: 'show-avatar') %>
+	<br>
+	<%end%>
+	<%end%>
+
+	<% if current_user %>
 <%#= link_to 'Reply', new_post_comment_path(:parent_id=>comment, :post_id => @post) %>
 <% if comment.user_id == current_user.id %>
+
 <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
 		
 		
 <%end%>
 		<%end%>
+</div>
+
+		
 		</div>
 	<br>
-</div>
+<br>
+
+
+<%end%>

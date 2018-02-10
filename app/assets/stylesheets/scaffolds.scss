@@ -10,28 +10,32 @@ body {
   
 }
 
+td{
+  padding:10px;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; 
+  padding:0px 4px;
 }
+
 
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
-
+.colorfix{
+  color:#000;
+}
 a {
   color: #000;
+}
 
-  /*&:visited {
-    color: #666;
-  }*/
-
-  &:hover {
+a:hover {
     opacity: 0.5;
-  }
 }
 
 table {
@@ -41,13 +45,13 @@ table {
 
 tbody {
     display: inline-block;
-    
-    &:hover {
-        cursor: pointer;
-        background-color: none;
-        opacity: .5;
-    }
 }
+tbody:hover {
+    cursor: pointer;
+    background-color: none;
+    opacity: .5;
+}
+
 
 th {
   padding-bottom: 5px;
@@ -73,10 +77,10 @@ th {
     content: "Add Picture";
     border: 1px solid #888;
     transition: .3s background-color;
-        &:hover {
-            color: black;
-            background-color: white;
-            }
+}
+#upload-button:hover {
+  color: black;
+  background-color: white;
 }
 
 #pictureInput {
@@ -85,14 +89,36 @@ th {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    float: center;
+    margin: auto;
+    display: inline;
+}
+
+#videoInput {
+  background-color: black;
+  z-index: 2;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  margin: auto;
+  display: inline;
 }
 
 .button {
-    background-color: black;
-    color: white;
+  background-color: #444;
+  color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	padding: 5px;
 }
-
+.button:hover {
+  color: #444;
+  background-color: #fff;
+  
+}
+.button:active {
+  background-color: #444;
+  color: #fff;
+}
 
 
 #post-title {
@@ -100,14 +126,22 @@ th {
     word-wrap: break-word;
     overflow:hidden;
     position:relative;
-    
+    color:black;
     text-align:center;
-    
+    width: 110px;
+}
+
+.user-cell {
+	display: inline-block;
+}
+.user-cell:hover {
+  cursor: pointer;
+  background-color: none;
+  opacity: .5;
 }
 
 td {
-  
-  max-width: 120px;
+  max-width: 105px;
   max-height: 360px;    
 }
 
@@ -116,9 +150,8 @@ td {
     overflow:hidden;
     position:relative;
     text-align: justify;
-    
-    
-    
+    color: black;
+    width: 110px;
 }
 
 
@@ -129,50 +162,56 @@ td {
 
 #show-body {
 	margin: auto;
-	max-width: 360px;
+  max-width: 360px;
+  word-wrap: break-word;
 }
 
 .show-avatar {
 	border-radius: 100%;
 }
 
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
+div.actions{
+  margin-bottom: 10px;
 }
+
+div.field {
+  margin-bottom: 10px;
+}
+
 
 #notice {
   color: green;
 }
 
 .field_with_errors {
+  margin: auto;
   padding: 2px;
   background-color: red;
   display: table;
 }
 
 #error_explanation {
+  margin: auto;
   width: 450px;
   border: 2px solid red;
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+}
 
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px -7px 0;
-    background-color: #c00;
-    color: #fff;
-  }
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
 
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff;
 }
 
 label {
@@ -202,14 +241,47 @@ label {
 #like {
 	text-decoration: none;
 	font-size: 25px;
-	&:active{
-		font-size: 20px;
-	}
 }
+
+#like:active{
+  font-size: 20px;
+}
+
 #dislike {
 	text-decoration: none;
 	font-size: 25px;
-	&:active {
-		font-size: 20px;
-	}
+}
+
+#dislike:active {
+  font-size: 20px;
+}
+
+.commentliked {
+	pointer-events: none;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+}
+
+.commentdisliked {
+	text-decoration: none;
+	color: lightgrey;
+}
+
+#commentlike {
+	text-decoration: none;
+	font-size: 25px;
+}
+
+#commentlike:active{
+  font-size: 20px;
+}
+
+#commentdislike {
+	text-decoration: none;
+	font-size: 25px;
+}
+
+#commentdislike:active {
+  font-size: 20px;
 }

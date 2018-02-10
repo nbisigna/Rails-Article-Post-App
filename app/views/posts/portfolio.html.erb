@@ -1,48 +1,35 @@
-<% if (current_user) && (current_user.username == @user.username) %> <div><%= link_to 'Edit Resume', edit_user_registration_path%></div> <%end%>
-<br>
-<h1>
-<%= @user.username %>
-	</h1>
-<div>
-<%= image_tag(@user.avatar(:medium), class: 'show-avatar') %>
-	</div>
-<br>
-<div><b>Rank:</b> <%=@user.user_rank%></div>
-<div><b>Rating:</b> <%=@user.sum_score%></div>
-<div><b>posts:</b> <%= @user.posts.count %></div>
-		<div><b>comments:</b> <%= @user.comments.count %></div>
-<section class="stats">
-        <%= render 'devise/shared/stats' %>
-      </section>
-<br>
-<div id='follow_form'><%= render 'devise/shared/follow_form' %></div>
-<br>
-<h1>
-<%= link_to 'Back', :back, class: 'button' %>
-	</h1>
-<br>
+<p id="notice"><%= notice %></p>
 
-
-<div id='show-content'>
 <table>
-<% @user.posts.each do |post| %>
-<tbody>
+  <!--<thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+-->
+<% @posts.each do |post| %>
+    
+    
+  <tbody>
     
       <tr>
           <td><%= link_to post, {style: 'text-decoration:none'}  do %>
               <div class='clickable'>
               <p id='post-title'><%= truncate(strip_tags(post.title), length: 100) %></p>
-				  
 				  <div>
 					  <span><%= post.get_likes.size %> <span id='like'>√</span> |</span>
 					  <span id='dislike'>X</span><span> <%= post.get_dislikes.size%></span>
 				  </div>
-				  
 				  <small><%= post.created_at.try(:strftime,"%b %d %Y at %I:%M%p") %></small>
 			  <!--<p id='post-user'>By <br>
 				  <%# post.user.username %></p>-->
             <% if post.image.exists? %>
         <%= image_tag(post.image(:thumb)) %>
+        <% elsif post.video.exists? %>
+
+        <%= image_tag(post.video(:thumb)) %>
             <% end %>
 				  
             <p id='post-body'><%= truncate(strip_tags(post.body), length: 200) %></p>
@@ -60,13 +47,13 @@
   </tbody>
     
 </table>
-</div>
+
 
 
 <!-- #<%= link_to 'New Post', new_post_path %> -->
 
 <h1 id="infinite-scrolling">
-<% will_paginate @posts %>
+  <%= will_paginate %>
 	<br>
 	<br>
 </h1>

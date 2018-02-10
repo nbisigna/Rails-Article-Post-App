@@ -22,6 +22,9 @@
 				  <%# post.user.username %></p>-->
             <% if post.image.exists? %>
         <%= image_tag(post.image(:thumb)) %>
+        <% elsif post.video.exists? %>
+
+        <%= image_tag(post.video(:thumb)) %>
             <% end %>
 				  
             <p id='post-body'><%= truncate(strip_tags(post.body), length: 200) %></p>

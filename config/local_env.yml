@@ -1,0 +1,7 @@
+DATABASE_PASSWORD: Leviathan6
+DATABASE_USERNAME: postgres
+
+secret_key_base: 
+
+export DATABASE_PASSWORD=Leviathan6
+export DATABASE_USERNAME=postgres

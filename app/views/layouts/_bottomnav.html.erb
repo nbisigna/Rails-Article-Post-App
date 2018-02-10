@@ -1,32 +1,26 @@
-<div class="bottom">
-<div class="bnav">
-      <ul>
-          <% if current_user %>
-        <li><a><%= link_to image_tag(current_user.avatar(:tiny), class: 'avatar-thumb' ), user_path(current_user) %></a>
-          </li>
-        <li><a>Resume</a>
-          </li>
-        <li><a><%= link_to 'Publish', new_post_path %></a>
-          </li>
-        <li><a>Opinions</a>
-          </li>
-        <li><a ><%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>
-          </li>
-          <%else%>
-          <li><a><%= link_to 'Sign In', new_user_session_path %></a>
-          </li>
-        <li><a><%= link_to 'Sign Up', new_user_registration_path %></a>
-          </li>
-          <%end%>
-      </ul>
-    </div>
-</div>
-
-<script>
-     $(function() {
-        $('a').click(function() {
-           $('a').removeClass();
-           $(this).addClass('active');
-        });
-     });
-  </script>
+<nav class="bnavbar">
+  <div class="bdropdown">
+    <% if current_user %>
+      <%= link_to image_tag(current_user.avatar(:tiny), class: 'link show-avatar'), user_profile_path(current_user) %>
+      <button class="bdropbtn">
+        <%= link_to 'Subs', feed_path, class: 'blink clickable' %>
+      </button>
+      <button class="bdropbtn">
+        <%= link_to 'Publish', new_post_path, class: 'blink clickable' %>
+      </button>
+      <button class="bdropbtn">
+        <%= link_to 'Opinions', opinions_path, class: 'blink clickable' %>
+      </button>
+      <button class="bdropbtn">
+        <%= link_to 'Logout', destroy_user_session_path, class: 'blink clickable', method: :delete %>
+      </button>
+    <% else %>
+      <button class="bdropbtn">
+        <%= link_to 'Sign In', new_user_session_path, class: 'blink clickable' %>
+      </button>
+      <button class="bdropbtn">
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'blink clickable' %>
+      </button>
+    <% end %>
+  </div>
+</nav>

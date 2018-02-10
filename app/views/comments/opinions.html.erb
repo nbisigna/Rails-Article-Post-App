@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  
+<% current_user.comments.each do |comment| %>
+    
+    
+  <tbody>
+      <tr>
+          <td><%= link_to post_path(comment.post_id), {style: 'text-decoration:none'}  do %>
+			  
+              <div class='clickable'>
+				  
+				  <div>
+					  <span><%= comment.get_likes.size %> <span id='like'>√</span> |</span>
+					  <span id='dislike'>X</span><span> <%= comment.get_dislikes.size%></span>
+				  </div>
+				  
+              		<%=comment.body %>
+				  <div><small><%= comment.created_at.try(:strftime,"%b %d %Y at %H:%M")
+%></small></div>
+				  <%end%>
+				  
+				  
+				  <!--<%#= link_to 'Destroy', post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+            
+            
+			  </div>
+          </td>
+      </tr>
+      <% end %>
+    
+  </tbody>
+    
+</table>
+
+
+
+<!-- #<%= link_to 'New Post', new_post_path %> -->
+
+<h1 id="infinite-scrolling">
+  <%= will_paginate %>
+	<br>
+	<br>
+</h1>

@@ -1,0 +1,35 @@
+<% @post.comments.find(params[:comment_id]) do |comment| %>
+
+<% if comment.id.present? %>
+<%= hidden_field_tag y = comment.get_likes.size %>
+<span id='commentlikes'>
+<%=y%>
+</span>
+
+<% if current_user.voted_up_on? comment %>
+	<%= link_to '√', like_post_comment_path(@post, comment_id: comment.id), remote: true, id: 'commentlike_#{@comment.id}', class: 'commentlike commentliked'%>
+	|
+<%= link_to 'X', dislike_post_comment_path(@post, comment_id: comment.id), remote: true, id: 'commentdislike_#{@comment.id}', class: 'commentdislike commentdisliked'%>
+
+
+
+<%elsif current_user.voted_down_on? comment %>
+<%= link_to '√', like_post_comment_path(@post, comment_id: comment.id), remote: true, id: 'commentlike_#{@comment.id}', class: 'commentlike commentdisliked'%>
+|
+<%= link_to 'X', dislike_post_comment_path(@post, comment_id: comment.id), remote: true, id: 'commentdislike_#{@comment.id}', class: 'commentdislike commentliked'%>
+
+
+
+<%else%>
+<%= link_to '√', like_post_comment_path(@post, comment_id: comment.id), remote: true, id: 'commentlike_#{@comment.id}', class: 'commentlike'%>
+ | 
+<%= link_to 'X', dislike_post_comment_path(@post, comment_id: comment.id), remote: true, id: 'commentdislike_#{@comment.id}', class: 'commentdislike' %>
+<%end%>
+
+<%= hidden_field_tag z = comment.get_dislikes.size %>
+<span id='commentdislikes'>
+<%=z%>
+</span>
+<%end%>
+
+<%end%>

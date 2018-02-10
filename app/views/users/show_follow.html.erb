@@ -1,30 +1,45 @@
-<% provide(:title, @title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= image_tag(@user.avatar) %>
-      <h1><%= @user.username %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>posts:</b> <%= @user.posts.count %></span>
+
+<div>
+  
+    <section>
+		<% if (current_user) && (current_user.username == @user.username) %> <div><%= link_to 'Edit Resume', edit_user_registration_path%></div> <%end%>
+<br>
+		<h1><%= @user.username %></h1>
+      <%= link_to image_tag(@user.avatar(:medium), class: 'show-avatar'), @user %>
+      
+      <div><b>posts:</b> <%= @user.posts.count %></div>
+		<div><b>comments:</b> <%= @user.comments.count %></div>
     </section>
     <section class="stats">
       <%= render 'devise/shared/stats' %>
+	  </section>
+		
       <% if @users.any? %>
         <div class="user_avatars">
+			<table
           <% @users.each do |user| %>
-            <%= link_to user.avatar, profile %>
+			<tbody>
+	<tr>
+		<td>
+			<div><%= user.username %></div>
+            <div><%= link_to image_tag(user.avatar(:thumb), class: 'show-avatar'), user_profile_path(user) %>
+				
+			</div>
+			</td>
           <% end %>
+			</tr>
         </div>
       <% end %>
-    </section>
-  </aside>
+		</tbody>
+	  </table>
+   
+ 
   <div class="col-md-8">
-    <h3><%= @title %></h3>
+    
     <% if @users.any? %>
       <ul class="users follow">
-        <%= render @users %>
+        
       </ul>
       <%= will_paginate %>
     <% end %>
   </div>
-</div>
