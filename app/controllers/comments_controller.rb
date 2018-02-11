@@ -6,6 +6,10 @@ class CommentsController < ApplicationController
   def index
     @comments = Comment.all
   end
+	
+	def opinions
+	 @comments = current_user.comments.paginate(page: params[:page], :per_page => 33).order('created_at DESC') 
+  end
 
   # GET /comments/1
   # GET /comments/1.json
@@ -15,8 +19,8 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
 	@post = Post.find(params[:post_id])
-    @comment = Comment.new
-	@comment.parent_id = params[:parent_id]
+  @comment = Comment.new
+	# @comment.parent_id = params[:parent_id]
   end
 
   # GET /comments/1/edit
@@ -27,9 +31,9 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
 	@post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
+  @comment = @post.comments.build(comment_params)
 	@comment.user_id = current_user.id
-	@comment.parent_id = params[:parent_id]
+	@comment.post_id = @post.id
     respond_to do |format|
       if @comment.save
 		format.js
@@ -70,14 +74,31 @@ class CommentsController < ApplicationController
   end
 end
 
+def like
+	@post = Post.find(params[:post_id])
+	@comment = @post.comments.find(params[:comment_id])
+  @comment.liked_by current_user
+  respond_to do |format|
+    format.html { redirect_to @post }
+	 format.js
+  end
+ end
 
-
+  def dislike
+	  @post = Post.find(params[:post_id])
+	@comment = @post.comments.find(params[:comment_id])
+  @comment.disliked_by current_user
+  respond_to do |format|
+    format.html { redirect_to @post }
+    format.js
+    end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @post = Post.find(params[:post_id])
-	@comment = @post.comments.find(params[:id])
+	    @comment = @post.comments.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

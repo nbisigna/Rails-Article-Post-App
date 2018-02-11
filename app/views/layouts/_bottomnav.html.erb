@@ -1,7 +1,7 @@
 <nav class="bnavbar">
   <div class="bdropdown">
     <% if current_user %>
-      <%= link_to image_tag(current_user.avatar(:tiny), class: 'link show-avatar'), user_profile_path(current_user) %>
+      <%= link_to image_tag(current_user.avatar(:tiny), class: 'show-avatar bnav-av'), user_profile_path(current_user) %>
       <button class="bdropbtn">
         <%= link_to 'Subs', feed_path, class: 'blink clickable' %>
       </button>

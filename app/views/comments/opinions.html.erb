@@ -12,8 +12,8 @@
               <div class='clickable'>
 				  
 				  <div>
-					  <span><%= comment.get_likes.size %> <span id='like'>√</span> |</span>
-					  <span id='dislike'>X</span><span> <%= comment.get_dislikes.size%></span>
+					  <span><%= comment.cached_comments_up %> <span id='like'>√</span> |</span>
+					  <span id='dislike'>X</span><span> <%= comment.cached_comments_down%></span>
 				  </div>
 				  
               		<%=comment.body %>

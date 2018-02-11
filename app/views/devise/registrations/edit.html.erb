@@ -6,7 +6,7 @@
 
 <div style="border-radius: 100%; margin: auto; max-width: 300px; height:auto; width:auto;" id="picTarget">
 	<% if @user.avatar.exists? %>
-	<%= image_tag(@user.avatar, class: 'show-avatar') %>
+	<%= image_tag(@user.avatar(:medium), class: 'show-avatar') %>
 	<%end%>
 </div>
 

@@ -122,13 +122,14 @@ th {
 
 
 #post-title {
+    // margin: auto;
     font-weight: bold;
     word-wrap: break-word;
     overflow:hidden;
     position:relative;
     color:black;
     text-align:center;
-    width: 110px;
+    max-width: 110px;
 }
 
 .user-cell {
@@ -151,7 +152,7 @@ td {
     position:relative;
     text-align: justify;
     color: black;
-    width: 110px;
+    max-width: 110px;
 }
 
 

@@ -39,7 +39,7 @@ class User < ApplicationRecord
 	  @score += @postscore
 	end
 	comments.each do |comment|
-	  @commentscore = comment.weighted_score
+	  @commentscore = comment.cached_weighted_score
 	  @score += @commentscore * 10
 	end
 	  @followers = followers.count * 10

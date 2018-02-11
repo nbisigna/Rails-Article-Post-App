@@ -46,13 +46,6 @@ text-align: center;
   text-align:center;
 }
 
-
-
-.bdropbtn:hover .link{
-  
-  color: black;
-}
-
 .bdropbtn:hover {
   background-color: white;
   color: black;
@@ -64,7 +57,7 @@ button.bdropbtn:hover {
   font-size: 12px;
 }
 
-button.bdropbtn:active .link{
+button.bdropbtn:active .blink{
   background-color: #333;
   color: white;
   font-size: 12px;
@@ -76,4 +69,6 @@ button.bdropbtn:active {
   font-size: 12px;
 }
 
-
+.bnav-av{
+  bottom:0px;
+}

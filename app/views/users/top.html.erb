@@ -1,0 +1,33 @@
+<table>
+  <% @users.first(33).each do |user| %>
+    <% @score = 0 %>
+    <tbody>
+      <tr>
+        <td class="user-rank" id="<%= @score %>">
+          <%= link_to user_profile_path(user), {class: 'clickable'}  do %>
+            <div class="rank">_</div>
+            <div class="score">
+              Rating: <%=user.sum_score%>
+            </div>
+            <div>
+              <%= user.username %>
+            </div>
+            <div>
+              <%= image_tag(user.avatar(:thumb), class: 'show-avatar') %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+<script>
+  
+  $(document).ready(function() {
+  	$('.rank').each(function(i) {
+  		$(this).text('#'+(1+i++));
+  	});
+  });
+
+
+</script>
